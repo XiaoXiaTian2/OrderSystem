@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OrderSystem.Strategies;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace OrderSystem
     {
         private static List<Item> _orderDetails = new List<Item>();
 
-        public static void AddOrder(string discountType, Item item)
+        public static void AddOrder(MenuModel.Discount discount, Item item)
         {
             Item orderItem = _orderDetails.FirstOrDefault(order => order.name == item.name);
             if (orderItem == null)
@@ -34,14 +35,16 @@ namespace OrderSystem
             }
             //Discount discount = DiscountOrderFactory.CreateDiscountOrder(discountType);
             //discount.CalDisount(_orderDetails);
-            Discount.DiscountOrder(discountType, _orderDetails);
+            //Type symbolType = Type.GetType(discountType);
+            //AStrategy strategy = (AStrategy)Activator.CreateInstance(symbolType);
 
+            //Discount.DiscountOrder(strategy, _orderDetails);
+            ChangeDiscountType(discount);
         }
 
-        public static void ChangeDiscountType(string discountType)
+        public static void ChangeDiscountType(MenuModel.Discount discount)
         {
-            Discount.DiscountOrder(discountType, _orderDetails);
-
+            Discount.DiscountOrder(discount, _orderDetails);
         }
 
 

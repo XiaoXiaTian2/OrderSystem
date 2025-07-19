@@ -33,7 +33,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -49,10 +53,13 @@
     <Compile Include="Discount.cs" />
     <Compile Include="DiscountOrderFactory.cs" />
     <Compile Include="DiscountOrders\AllDrinksFortyFiveDollars.cs" />
+    <Compile Include="DiscountOrders\DesertOver799GetTwentyFivePercentOff.cs" />
     <Compile Include="DiscountOrders\AllFivePercentOff.cs" />
     <Compile Include="DiscountOrders\ChickenChopRiceWithWontonSoup.cs" />
     <Compile Include="DiscountOrders\ChickenChopRiceWithMilkTeaGetOneSouffle.cs" />
-    <Compile Include="DiscountOrders\ChickenDrumstickRice.cs" />
+    <Compile Include="DiscountOrders\TwoPorkRibsRiceAndOneBlackTeaGetOneSouffleAndSweetFishRice.cs" />
+    <Compile Include="DiscountOrders\ThreeChickenChopRiceAndTwoBubbleTeaGetOneSouffle.cs" />
+    <Compile Include="DiscountOrders\TwoPorkRibsRiceGetOneFree.cs" />
     <Compile Include="DiscountOrders\ConsumptionOver350GetTwentyPercentOff.cs" />
     <Compile Include="DiscountOrders\PorkRibsRiceThreeMinusTenDollar.cs" />
     <Compile Include="DiscountOrders\SweetFishRiceWithSeaweedSoupGetTwentyPercentOff.cs" />
@@ -67,11 +74,17 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Item.cs" />
+    <Compile Include="MenuModel.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReceivePanelHandler.cs" />
     <Compile Include="ShowPanel.cs" />
+    <Compile Include="Strategies\AStrategy.cs" />
+    <Compile Include="Strategies\DiscountPercentStrategy.cs" />
+    <Compile Include="Strategies\ConsumptionAmountStrategy.cs" />
+    <Compile Include="Strategies\DiscountPriceStrategy.cs" />
+    <Compile Include="Strategies\BuyandFreeStrategy.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -84,6 +97,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

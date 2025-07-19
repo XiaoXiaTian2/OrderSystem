@@ -1,0 +1,621 @@
+{
+  "Menus": [
+    {
+      "Title": "主餐",
+      "Items": [
+        {
+          "Name": "雞腿飯",
+          "Price": 85
+        },
+        {
+          "Name": "排骨飯",
+          "Price": 120
+        },
+        {
+          "Name": "雞排飯",
+          "Price": 95
+        },
+        {
+          "Name": "香魚飯",
+          "Price": 100
+        }
+      ]
+    },
+    {
+      "Title": "附餐",
+      "Items": [
+        {
+          "Name": "海帶湯",
+          "Price": 65
+        },
+        {
+          "Name": "餛飩湯",
+          "Price": 100
+        },
+        {
+          "Name": "味噌湯",
+          "Price": 75
+        },
+        {
+          "Name": "蛋花湯",
+          "Price": 80
+        }
+      ]
+    },
+    {
+      "Title": "飲料",
+      "Items": [
+        {
+          "Name": "紅茶",
+          "Price": 45
+        },
+        {
+          "Name": "綠茶",
+          "Price": 45
+        },
+        {
+          "Name": "奶茶",
+          "Price": 65
+        },
+        {
+          "Name": "水果茶",
+          "Price": 50
+        }
+      ]
+    },
+    {
+      "Title": "甜點",
+      "Items": [
+        {
+          "Name": "冰淇淋",
+          "Price": 55
+        },
+        {
+          "Name": "舒芙蕾",
+          "Price": 60
+        },
+        {
+          "Name": "冰沙",
+          "Price": 65
+        },
+        {
+          "Name": "鬆餅",
+          "Price": 70
+        }
+      ]
+    }
+  ],
+  "Discounts": [
+    {
+      "Name": "排骨飯買2送1",
+      "Strategy": "OrderSystem.Strategies.BuyandFreeStrategy",
+      "Conditions": [
+        {
+          "Name": "排骨飯",
+          "Number": 2,
+          "Total_Price": 0
+        }
+      ],
+      "Rewards": [
+        {
+          "Name": "排骨飯",
+          "Number": 1,
+          "Free_type": "",
+          "Discount_Price": 0,
+          "Discount_Percentage": 0,
+          "Set_Price": 0
+        }
+      ]
+    },
+    {
+      "Name": "香魚飯買兩個送一杯紅茶",
+      "Strategy": "OrderSystem.Strategies.BuyandFreeStrategy",
+      "Conditions": [
+        {
+          "Name": "香魚飯",
+          "Number": 2,
+          "Total_Price": 0
+        }
+      ],
+      "Rewards": [
+        {
+          "Name": "紅茶",
+          "Number": 1,
+          "Free_type": "",
+          "Discount_Price": 0,
+          "Discount_Percentage": 0,
+          "Set_Price": 0
+        }
+      ]
+    },
+    {
+      "Name": "雞排飯三份加奶茶兩份送一盤舒芙蕾",
+      "Strategy": "OrderSystem.Strategies.BuyandFreeStrategy",
+      "Conditions": [
+        {
+          "Name": "雞排飯",
+          "Number": 3,
+          "Total_Price": 0
+        },
+        {
+          "Name": "奶茶",
+          "Number": 2,
+          "Total_Price": 0
+        }
+      ],
+      "Rewards": [
+        {
+          "Name": "舒芙蕾",
+          "Number": 1,
+          "Free_type": "",
+          "Discount_Price": 0,
+          "Discount_Percentage": 0,
+          "Set_Price": 0
+        }
+      ]
+    },
+    {
+      "Name": "排骨飯兩份加紅茶一杯送一盤舒芙蕾和一盤香魚飯",
+      "Strategy": "OrderSystem.Strategies.BuyandFreeStrategy",
+      "Conditions": [
+        {
+          "Name": "排骨飯",
+          "Number": 2,
+          "Total_Price": 0
+        },
+        {
+          "Name": "紅茶",
+          "Number": 1,
+          "Total_Price": 0
+        }
+      ],
+      "Rewards": [
+        {
+          "Name": "舒芙蕾",
+          "Number": 1,
+          "Free_type": "",
+          "Discount_Price": 0,
+          "Discount_Percentage": 0,
+          "Set_Price": 0
+        },
+        {
+          "Name": "香魚飯",
+          "Number": 1,
+          "Free_type": "",
+          "Discount_Price": 0,
+          "Discount_Percentage": 0,
+          "Set_Price": 0
+        }
+      ]
+    },
+    {
+      "Name": "甜點任買兩份外加飲料兩杯就送雞排飯一份和排骨飯兩份",
+      "Strategy": "OrderSystem.Strategies.BuyandFreeStrategy",
+      "Conditions": [
+        {
+          "Name": "紅茶|綠茶|奶茶|水果茶",
+          "Number": 2,
+          "Total_Price": 0
+        },
+        {
+          "Name": "冰淇淋|舒芙蕾|冰沙|鬆餅",
+          "Number": 2,
+          "Total_Price": 0
+        }
+      ],
+      "Rewards": [
+        {
+          "Name": "雞排飯",
+          "Number": 1,
+          "Free_type": "",
+          "Discount_Price": 0,
+          "Discount_Percentage": 0,
+          "Set_Price": 0
+        },
+        {
+          "Name": "排骨飯",
+          "Number": 2,
+          "Free_type": "",
+          "Discount_Price": 0,
+          "Discount_Percentage": 0,
+          "Set_Price": 0
+        }
+      ]
+    },
+    {
+      "Name": "任選三份主餐搭配三份附餐就送任一主/附餐最便宜品項",
+      "Strategy": "OrderSystem.Strategies.BuyandFreeStrategy",
+      "Conditions": [
+        {
+          "Name": "雞腿飯|排骨飯|香魚飯|雞排飯",
+          "Number": 3,
+          "Total_Price": 0
+        },
+        {
+          "Name": "海帶湯|餛飩湯|味噌湯|蛋花湯",
+          "Number": 3,
+          "Total_Price": 0
+        }
+      ],
+      "Rewards": [
+        {
+          "Name": "雞腿飯|排骨飯|香魚飯|雞排飯",
+          "Number": 1,
+          "Free_type": "min",
+          "Discount_Price": 0,
+          "Discount_Percentage": 0,
+          "Set_Price": 0
+        },
+        {
+          "Name": "海帶湯|餛飩湯|味噌湯|蛋花湯",
+          "Number": 1,
+          "Free_type": "min",
+          "Discount_Price": 0,
+          "Discount_Percentage": 0,
+          "Set_Price": 0
+        }
+      ]
+    },
+    {
+      "Name": "飲料任買三杯送一杯(送最便宜的)",
+      "Strategy": "OrderSystem.Strategies.BuyandFreeStrategy",
+      "Conditions": [
+        {
+          "Name": "紅茶|綠茶|奶茶|水果茶",
+          "Number": 3,
+          "Total_Price": 0
+        }
+      ],
+      "Rewards": [
+        {
+          "Name": "紅茶|綠茶|奶茶|水果茶",
+          "Number": 1,
+          "Free_type": "min",
+          "Discount_Price": 0,
+          "Discount_Percentage": 0,
+          "Set_Price": 0
+        }
+      ]
+    },
+    {
+      "Name": "飲料任買三杯送五杯(送最貴的)",
+      "Strategy": "OrderSystem.Strategies.BuyandFreeStrategy",
+      "Conditions": [
+        {
+          "Name": "紅茶|綠茶|奶茶|水果茶",
+          "Number": 3,
+          "Total_Price": 0
+        }
+      ],
+      "Rewards": [
+        {
+          "Name": "紅茶|綠茶|奶茶|水果茶",
+          "Number": 5,
+          "Free_type": "max",
+          "Discount_Price": 0,
+          "Discount_Percentage": 0,
+          "Set_Price": 0
+        }
+      ]
+    },
+    {
+      "Name": "飲料任買十杯送一杯(隨機贈送)",
+      "Strategy": "OrderSystem.Strategies.BuyandFreeStrategy",
+      "Conditions": [
+        {
+          "Name": "紅茶|綠茶|奶茶|水果茶",
+          "Number": 10,
+          "Total_Price": 0
+        }
+      ],
+      "Rewards": [
+        {
+          "Name": "紅茶|綠茶|奶茶|水果茶",
+          "Number": 1,
+          "Free_type": "random",
+          "Discount_Price": 0,
+          "Discount_Percentage": 0,
+          "Set_Price": 0
+        }
+      ]
+    },
+    {
+      "Name": "雞排飯加餛飩湯190元",
+      "Strategy": "OrderSystem.Strategies.DiscountPriceStrategy",
+      "Conditions": [
+        {
+          "Name": "雞排飯",
+          "Number": 1,
+          "Total_Price": 0
+        },
+        {
+          "Name": "餛飩湯",
+          "Number": 1,
+          "Total_Price": 0
+        }
+      ],
+      "Rewards": [
+        {
+          "Name": "雞排飯加餛飩湯190元",
+          "Number": 1,
+          "Free_type": "",
+          "Discount_Price": -5,
+          "Discount_Percentage": 0,
+          "Set_Price": 0
+        }
+      ]
+    },
+    {
+      "Name": "排骨飯買三個350元",
+      "Strategy": "OrderSystem.Strategies.DiscountPriceStrategy",
+      "Conditions": [
+        {
+          "Name": "排骨飯",
+          "Number": 3,
+          "Total_Price": 0
+        }
+      ],
+      "Rewards": [
+        {
+          "Name": "排骨飯買三個350元",
+          "Number": 1,
+          "Free_type": "",
+          "Discount_Price": -10,
+          "Discount_Percentage": 0,
+          "Set_Price": 0
+        }
+      ]
+    },
+    {
+      "Name": "飲料均一價45元",
+      "Strategy": "OrderSystem.Strategies.DiscountPriceStrategy",
+      "Conditions": [
+        {
+          "Name": "紅茶|綠茶|奶茶|水果茶",
+          "Number": 1,
+          "Total_Price": 0
+        }
+      ],
+      "Rewards": [
+        {
+          "Name": "紅茶|綠茶|奶茶|水果茶",
+          "Number": 1,
+          "Free_type": "fix",
+          "Discount_Price": 0,
+          "Discount_Percentage": 0,
+          "Set_Price": 45
+        }
+      ]
+    },
+    {
+      "Name": "紅茶加10元多一件",
+      "Strategy": "OrderSystem.Strategies.DiscountPriceStrategy",
+      "Conditions": [
+        {
+          "Name": "紅茶",
+          "Number": 2,
+          "Total_Price": 0
+        }
+      ],
+      "Rewards": [
+        {
+          "Name": "紅茶",
+          "Number": 1,
+          "Free_type": "",
+          "Discount_Price": -35,
+          "Discount_Percentage": 0,
+          "Set_Price": 0
+        }
+      ]
+    },
+    {
+      "Name": "飲料任選+雞腿飯或排骨飯110元",
+      "Strategy": "OrderSystem.Strategies.DiscountPriceStrategy",
+      "Conditions": [
+        {
+          "Name": "紅茶|綠茶|奶茶|水果茶",
+          "Number": 1,
+          "Total_Price": 0
+        },
+        {
+          "Name": "雞腿飯|排骨飯",
+          "Number": 1,
+          "Total_Price": 0
+        }
+      ],
+      "Rewards": [
+        {
+          "Name": "紅茶|綠茶|奶茶|水果茶+雞腿飯或排骨飯110元",
+          "Number": 1,
+          "Free_type": "fix",
+          "Discount_Price": 0,
+          "Discount_Percentage": 0,
+          "Set_Price": 110
+        }
+      ]
+    },
+    {
+      "Name": "香魚飯搭配海帶湯打八折",
+      "Strategy": "OrderSystem.Strategies.DiscountPercentStrategy",
+      "Conditions": [
+        {
+          "Name": "香魚飯",
+          "Number": 1,
+          "Total_Price": 0
+        },
+        {
+          "Name": "海帶湯",
+          "Number": 2,
+          "Total_Price": 0
+        }
+      ],
+      "Rewards": [
+        {
+          "Name": "香魚飯搭配海帶湯",
+          "Number": 1,
+          "Free_type": "",
+          "Discount_Price": 0,
+          "Discount_Percentage": 0.8,
+          "Set_Price": 0
+        }
+      ]
+    },
+    {
+      "Name": "排骨飯三個打85折",
+      "Strategy": "OrderSystem.Strategies.DiscountPercentStrategy",
+      "Conditions": [
+        {
+          "Name": "排骨飯",
+          "Number": 3,
+          "Total_Price": 0
+        }
+      ],
+      "Rewards": [
+        {
+          "Name": "排骨飯",
+          "Number": 1,
+          "Free_type": "",
+          "Discount_Price": 0,
+          "Discount_Percentage": 0.85,
+          "Set_Price": 0
+        }
+      ]
+    },
+    {
+      "Name": "雞腿飯或排骨飯或香魚飯任選二件打7折",
+      "Strategy": "OrderSystem.Strategies.DiscountPercentStrategy",
+      "Conditions": [
+        {
+          "Name": "排骨飯|雞腿飯|香魚飯",
+          "Number": 2,
+          "Total_Price": 0
+        }
+      ],
+      "Rewards": [
+        {
+          "Name": "雞腿飯或排骨飯或香魚飯",
+          "Number": 1,
+          "Free_type": "",
+          "Discount_Price": 0,
+          "Discount_Percentage": 0.7,
+          "Set_Price": 0
+        }
+      ]
+    },
+    {
+      "Name": "所有主餐任買兩份加附餐任選兩份打85折",
+      "Strategy": "OrderSystem.Strategies.DiscountPercentStrategy",
+      "Conditions": [
+        {
+          "Name": "雞腿飯|排骨飯|雞排飯|香魚飯",
+          "Number": 2,
+          "Total_Price": 0
+        },
+        {
+          "Name": "海帶湯|餛飩湯|味噌湯|蛋花湯",
+          "Number": 2,
+          "Total_Price": 0
+        }
+      ],
+      "Rewards": [
+        {
+          "Name": "雞腿飯|排骨飯|雞排飯|香魚飯任買兩份加海帶湯|餛飩湯|味噌湯|蛋花湯任選兩份打85折",
+          "Number": 1,
+          "Free_type": "",
+          "Discount_Price": 0,
+          "Discount_Percentage": 0.85,
+          "Set_Price": 0
+        }
+      ]
+    },
+    {
+      "Name": "甜點任選+紅茶或綠茶9折",
+      "Strategy": "OrderSystem.Strategies.DiscountPercentStrategy",
+      "Conditions": [
+        {
+          "Name": "冰淇淋|舒芙蕾|冰沙|鬆餅",
+          "Number": 1,
+          "Total_Price": 0
+        },
+        {
+          "Name": "紅茶|綠茶",
+          "Number": 1,
+          "Total_Price": 0
+        }
+      ],
+      "Rewards": [
+        {
+          "Name": "冰淇淋|舒芙蕾|冰沙|鬆餅+紅茶或綠茶9折",
+          "Number": 1,
+          "Free_type": "",
+          "Discount_Price": 0,
+          "Discount_Percentage": 0.9,
+          "Set_Price": 0
+        }
+      ]
+    },
+    {
+      "Name": "全場消費滿350打八折",
+      "Strategy": "OrderSystem.Strategies.ConsumptionAmountStrategy",
+      "Conditions": [
+        {
+          "Name": "",
+          "Number": 1,
+          "Total_Price": 350
+        }
+      ],
+      "Rewards": [
+        {
+          "Name": "全場消費滿350打八折",
+          "Number": 1,
+          "Free_type": "",
+          "Discount_Price": 0,
+          "Discount_Percentage": 0.8,
+          "Set_Price": 0
+        }
+      ]
+    },
+    {
+      "Name": "全場消費一律95折",
+      "Strategy": "OrderSystem.Strategies.ConsumptionAmountStrategy",
+      "Conditions": [
+        {
+          "Name": "",
+          "Number": 1,
+          "Total_Price": 0
+        }
+      ],
+      "Rewards": [
+        {
+          "Name": "全場消費一律95折",
+          "Number": 1,
+          "Free_type": "",
+          "Discount_Price": 0,
+          "Discount_Percentage": 0.95,
+          "Set_Price": 0
+        }
+      ]
+    },
+    {
+      "Name": "甜點滿799打75折",
+      "Strategy": "OrderSystem.Strategies.ConsumptionAmountStrategy",
+      "Conditions": [
+        {
+          "Name": "冰淇淋|舒芙蕾|冰沙|鬆餅",
+          "Number": 1,
+          "Total_Price": 799
+        }
+      ],
+      "Rewards": [
+        {
+          "Name": "冰淇淋|舒芙蕾|冰沙|鬆餅|滿799打75折",
+          "Number": 1,
+          "Free_type": "",
+          "Discount_Price": 0,
+          "Discount_Percentage": 0.75,
+          "Set_Price": 0
+        }
+      ]
+    }
+  ]
+}

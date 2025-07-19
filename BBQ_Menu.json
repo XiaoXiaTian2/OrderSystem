@@ -1,0 +1,200 @@
+{
+  "Menus": [
+    {
+      "Title": "燒肉主餐",
+      "Items": [
+        {
+          "Name": "牛五花套餐",
+          "Price": 280
+        },
+        {
+          "Name": "豬梅花套餐",
+          "Price": 250
+        },
+        {
+          "Name": "雞腿排套餐",
+          "Price": 240
+        },
+        {
+          "Name": "綜合拼盤",
+          "Price": 320
+        }
+      ]
+    },
+    {
+      "Title": "烤物配菜",
+      "Items": [
+        {
+          "Name": "韓式泡菜",
+          "Price": 60
+        },
+        {
+          "Name": "烤蒜片",
+          "Price": 40
+        },
+        {
+          "Name": "烤蔬菜拼盤",
+          "Price": 75
+        },
+        {
+          "Name": "韓式小菜",
+          "Price": 70
+        }
+      ]
+    },
+    {
+      "Title": "飲品",
+      "Items": [
+        {
+          "Name": "烏龍茶",
+          "Price": 50
+        },
+        {
+          "Name": "可樂",
+          "Price": 50
+        },
+        {
+          "Name": "燒酒",
+          "Price": 120
+        },
+        {
+          "Name": "氣泡水",
+          "Price": 45
+        }
+      ]
+    },
+    {
+      "Title": "飯後甜點",
+      "Items": [
+        {
+          "Name": "抹茶冰淇淋",
+          "Price": 65
+        },
+        {
+          "Name": "紅豆湯",
+          "Price": 55
+        },
+        {
+          "Name": "韓式年糕",
+          "Price": 70
+        },
+        {
+          "Name": "杏仁豆腐",
+          "Price": 60
+        }
+      ]
+    }
+  ],
+  "Discounts": [
+    {
+      "Name": "牛五花套餐買2送1",
+      "Strategy": "OrderSystem.Strategies.BuyandFreeStrategy",
+      "Conditions": [
+        {
+          "Name": "牛五花套餐",
+          "Number": 2,
+          "Total_Price": 0
+        }
+      ],
+      "Rewards": [
+        {
+          "Name": "牛五花套餐",
+          "Number": 1,
+          "Free_type": "",
+          "Discount_Price": 0,
+          "Discount_Percentage": 0,
+          "Set_Price": 0
+        }
+      ]
+    },
+    {
+      "Name": "綜合拼盤買一送韓式泡菜",
+      "Strategy": "OrderSystem.Strategies.BuyandFreeStrategy",
+      "Conditions": [
+        {
+          "Name": "綜合拼盤",
+          "Number": 1,
+          "Total_Price": 0
+        }
+      ],
+      "Rewards": [
+        {
+          "Name": "韓式泡菜",
+          "Number": 1,
+          "Free_type": "",
+          "Discount_Price": 0,
+          "Discount_Percentage": 0,
+          "Set_Price": 0
+        }
+      ]
+    },
+    {
+      "Name": "雞腿排套餐加烤蔬菜拼盤合購300元",
+      "Strategy": "OrderSystem.Strategies.DiscountPriceStrategy",
+      "Conditions": [
+        {
+          "Name": "雞腿排套餐",
+          "Number": 1,
+          "Total_Price": 0
+        },
+        {
+          "Name": "烤蔬菜拼盤",
+          "Number": 1,
+          "Total_Price": 0
+        }
+      ],
+      "Rewards": [
+        {
+          "Name": "雞腿排套餐加烤蔬菜拼盤合購",
+          "Number": 1,
+          "Free_type": "fix",
+          "Discount_Price": 0,
+          "Discount_Percentage": 0,
+          "Set_Price": 300
+        }
+      ]
+    },
+    {
+      "Name": "任選三份燒肉主餐85折",
+      "Strategy": "OrderSystem.Strategies.DiscountPercentStrategy",
+      "Conditions": [
+        {
+          "Name": "牛五花套餐|豬梅花套餐|雞腿排套餐|綜合拼盤",
+          "Number": 3,
+          "Total_Price": 0
+        }
+      ],
+      "Rewards": [
+        {
+          "Name": "任選三份燒肉主餐85折",
+          "Number": 1,
+          "Free_type": "",
+          "Discount_Price": 0,
+          "Discount_Percentage": 0.85,
+          "Set_Price": 0
+        }
+      ]
+    },
+    {
+      "Name": "全場消費滿800元打8折",
+      "Strategy": "OrderSystem.Strategies.ConsumptionAmountStrategy",
+      "Conditions": [
+        {
+          "Name": "",
+          "Number": 1,
+          "Total_Price": 800
+        }
+      ],
+      "Rewards": [
+        {
+          "Name": "全場消費滿800打八折",
+          "Number": 1,
+          "Free_type": "",
+          "Discount_Price": 0,
+          "Discount_Percentage": 0.8,
+          "Set_Price": 0
+        }
+      ]
+    }
+  ]
+}

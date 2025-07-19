@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OrderSystem.Strategies;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,13 +8,17 @@ using System.Windows.Forms.VisualStyles;
 
 namespace OrderSystem.DiscountOrders
 {
-    class ChickenDrumstickRice : Discount
+    class TwoPorkRibsRiceGetOneFree : BuyandFreeStrategy
     {
-        public override void CalDisount(List<Item> items)
+        public TwoPorkRibsRiceGetOneFree(List<Item> items, MenuModel.Discount discount) : base(items, discount)
+        {
+        }
+
+        public override void DiscountOrder()
         {
             items.RemoveAll(x => x.name.Contains("贈送") || x.name.Contains("折扣"));
 
-            Item food = items.FirstOrDefault(item => item.name == "雞腿飯");
+            Item food = items.FirstOrDefault(item => item.name == "排骨飯");
             if (food != null && int.Parse(food.amount) >= 2)
             {
                 int fold = int.Parse(food.amount) / 2;

@@ -73,17 +73,7 @@
             // 
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
-            "雞腿飯買二送一",
-            "排骨飯買三個350元",
-            "雞排飯加餛飩湯190元",
-            "香魚飯買兩個送一杯紅茶",
-            "香魚飯搭配海帶湯打八折",
-            "雞排飯加奶茶送一盤舒芙蕾",
-            "排骨飯三個打85折",
-            "飲料均一價45元",
-            "飲料任買三杯送一杯(送最便宜的)",
-            "全場消費滿350打八折",
-            "全場消費一律95折"});
+            "OrderSystem.DiscountOrders.TwoPorkRibsRiceGetOneFree"});
             this.comboBox1.Location = new System.Drawing.Point(668, 657);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(255, 23);

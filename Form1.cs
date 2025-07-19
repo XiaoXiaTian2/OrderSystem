@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -20,19 +23,16 @@ namespace OrderSystem
             InitializeComponent();
         }
 
-        private string[] mains = { "雞腿飯$85", "排骨飯$120", "雞排飯$95", "香魚飯$100" };
-        private string[] adds = { "海帶湯$65", "餛飩湯$100", "味噌湯$75", "蛋花湯$80" };
-        private string[] drinks = { "紅茶$45", "綠茶$45", "奶茶$65", "水果茶$50" };
-        private string[] deserts = { "冰淇淋$55", "舒芙蕾$60", "冰沙$65", "鬆餅$70" };
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            string[][] menu = { mains, adds, drinks, deserts };
-            string[] titles = { "主餐", "附餐", "飲料", "甜點" };
+            string menuPath = ConfigurationManager.AppSettings["Menu"].ToString();
+            string info = File.ReadAllText(menuPath);
+            MenuModel model = JsonConvert.DeserializeObject<MenuModel>(info);
             ReceivePanelHandler.RenderPanel += GetOrder;
-            flowLayoutPanel1.GetFlowLayoutPanel(titles, menu, NumberChanged, CheckChanged);
-            comboBox1.SelectedIndex = 0;
-
+            flowLayoutPanel1.GetMenu(model, NumberChanged, CheckChanged);
+            comboBox1.DataSource = model.Discounts;
+            comboBox1.DisplayMember = "Name";
         }
 
         private void NumberChanged(object sender, EventArgs e)
@@ -44,12 +44,12 @@ namespace OrderSystem
                 if (box.Checked)
                 {
                     Item item = new Item(
-                            box.Text.Split('$')[0],
-                            box.Text.Split('$')[1],
-                            numericUpDown.Value.ToString(),
-                            (int.Parse(box.Text.Split('$')[1]) * (int)(numericUpDown.Value)).ToString()
-                        );
-                    Order.AddOrder(comboBox1.Text, item);
+                        box.Text.Split('$')[0],
+                        box.Text.Split('$')[1],
+                        numericUpDown.Value.ToString(),
+                        (int.Parse(box.Text.Split('$')[1]) * (int)(numericUpDown.Value)).ToString()
+                    );
+                    Order.AddOrder((MenuModel.Discount)comboBox1.SelectedValue, item);
                 }
             }
         }
@@ -65,7 +65,7 @@ namespace OrderSystem
                     (box.Tag as NumericUpDown).Value.ToString(),
                     (int.Parse(box.Text.Split('$')[1]) * (int)((box.Tag as NumericUpDown).Value)).ToString()
                 );
-                Order.AddOrder(comboBox1.Text, item);
+                Order.AddOrder((MenuModel.Discount)comboBox1.SelectedValue, item);
             }
         }
 
@@ -79,7 +79,7 @@ namespace OrderSystem
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Order.ChangeDiscountType(comboBox1.Text);
+            Order.ChangeDiscountType((MenuModel.Discount)comboBox1.SelectedValue);
         }
     }
 }
