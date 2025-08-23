@@ -58,15 +58,6 @@ namespace OrderSystem
             if (sender is CheckBox box)
             {
                 (box.Tag as NumericUpDown).Value = box.Checked ? 1 : 0;
-
-                //Item item = new Item(
-                //    box.Text.Split('$')[0],
-                //    box.Text.Split('$')[1],
-                //    (box.Tag as NumericUpDown).Value.ToString(),
-                //    (int.Parse(box.Text.Split('$')[1]) * (int)((box.Tag as NumericUpDown).Value)).ToString()
-                //);
-                //OrderRequest orderRequest = AIRecommand.Checked ? new OrderRequest(item) : new OrderRequest(item, (MenuModel.Discount)comboBox1.SelectedValue);
-                //await Order.AddOrder(orderRequest);
             }
         }
 
@@ -78,7 +69,6 @@ namespace OrderSystem
                 OrderRequest orderRequest = new OrderRequest((MenuModel.Discount)comboBox1.SelectedValue);
 
                 await Order.ChangeDiscountType(orderRequest);
-
             }
         }
 
