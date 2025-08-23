@@ -9,11 +9,12 @@ namespace OrderSystem
 {
     class ReceivePanelHandler
     {
-        public static event EventHandler<FlowLayoutPanel> RenderPanel;
+        // 08/16 HW 跟理由區打包成物件
+        public static event EventHandler<FullSidePanel> RenderPanel;
 
-        public static void GetFlowPanel(FlowLayoutPanel flowLayoutPanel)
+        public static void GetFlowPanel(FullSidePanel fullSidePanel)
         {
-            RenderPanel.Invoke(null, flowLayoutPanel);
+            RenderPanel.Invoke(null, fullSidePanel);
         }
     }
 }

@@ -50,7 +50,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AI\AIAgent.cs" />
+    <Compile Include="AI\Args.cs" />
+    <Compile Include="AI\Common\AIRequestModel.cs" />
+    <Compile Include="AI\Common\AIResponse.cs" />
+    <Compile Include="AI\Common\AIResult.cs" />
+    <Compile Include="AI\Constant\Role.cs" />
+    <Compile Include="AI\Tools\ATool.cs" />
+    <Compile Include="AI\Tools\DiscountSelector\DiscountSelectorTool.cs" />
+    <Compile Include="AI\Tools\DiscountSelector\Request\DiscountSelectorDeclaration.cs" />
+    <Compile Include="AI\Tools\DiscountSelector\Request\DiscountSelectorParameters.cs" />
+    <Compile Include="AI\Tools\DiscountSelector\Request\DiscountSelectorProperties.cs" />
+    <Compile Include="AI\Tools\DiscountSelector\Response\DiscountSelectorResponseArgs.cs" />
     <Compile Include="Discount.cs" />
+    <Compile Include="DiscountContext.cs" />
     <Compile Include="DiscountOrderFactory.cs" />
     <Compile Include="DiscountOrders\AllDrinksFortyFiveDollars.cs" />
     <Compile Include="DiscountOrders\DesertOver799GetTwentyFivePercentOff.cs" />
@@ -73,8 +86,11 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Item.cs" />
-    <Compile Include="MenuModel.cs" />
+    <Compile Include="FullSidePanel.cs" />
+    <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\MenuData.cs" />
+    <Compile Include="Models\MenuModel.cs" />
+    <Compile Include="Models\OrderRequest.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

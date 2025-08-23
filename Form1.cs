@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using OrderSystem.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,20 +24,17 @@ namespace OrderSystem
             InitializeComponent();
         }
 
-
         private void Form1_Load(object sender, EventArgs e)
         {
-            string menuPath = ConfigurationManager.AppSettings["Menu"].ToString();
-            string info = File.ReadAllText(menuPath);
-            MenuModel model = JsonConvert.DeserializeObject<MenuModel>(info);
             ReceivePanelHandler.RenderPanel += GetOrder;
-            flowLayoutPanel1.GetMenu(model, NumberChanged, CheckChanged);
-            comboBox1.DataSource = model.Discounts;
+            flowLayoutPanel1.GetMenu(MenuData.Menus, NumberChanged, CheckChanged);
+            comboBox1.DataSource = MenuData.Discounts;
             comboBox1.DisplayMember = "Name";
         }
 
-        private void NumberChanged(object sender, EventArgs e)
+        private async void NumberChanged(object sender, EventArgs e)
         {
+            Console.WriteLine("number changed");
             if (sender is NumericUpDown numericUpDown)
             {
                 CheckBox box = numericUpDown.Tag as CheckBox;
@@ -49,7 +47,8 @@ namespace OrderSystem
                         numericUpDown.Value.ToString(),
                         (int.Parse(box.Text.Split('$')[1]) * (int)(numericUpDown.Value)).ToString()
                     );
-                    Order.AddOrder((MenuModel.Discount)comboBox1.SelectedValue, item);
+                    OrderRequest orderRequest = AIRecommand.Checked ? new OrderRequest(item) : new OrderRequest(item, (MenuModel.Discount)comboBox1.SelectedValue);
+                    await Order.AddOrder(orderRequest);
                 }
             }
         }
@@ -59,27 +58,46 @@ namespace OrderSystem
             if (sender is CheckBox box)
             {
                 (box.Tag as NumericUpDown).Value = box.Checked ? 1 : 0;
-                Item item = new Item(
-                    box.Text.Split('$')[0],
-                    box.Text.Split('$')[1],
-                    (box.Tag as NumericUpDown).Value.ToString(),
-                    (int.Parse(box.Text.Split('$')[1]) * (int)((box.Tag as NumericUpDown).Value)).ToString()
-                );
-                Order.AddOrder((MenuModel.Discount)comboBox1.SelectedValue, item);
+
+                //Item item = new Item(
+                //    box.Text.Split('$')[0],
+                //    box.Text.Split('$')[1],
+                //    (box.Tag as NumericUpDown).Value.ToString(),
+                //    (int.Parse(box.Text.Split('$')[1]) * (int)((box.Tag as NumericUpDown).Value)).ToString()
+                //);
+                //OrderRequest orderRequest = AIRecommand.Checked ? new OrderRequest(item) : new OrderRequest(item, (MenuModel.Discount)comboBox1.SelectedValue);
+                //await Order.AddOrder(orderRequest);
             }
         }
 
-        private void GetOrder(object sender, FlowLayoutPanel e)
-        {
-            flowLayoutPanel2.Controls.Clear();
-            flowLayoutPanel2.Controls.Add(e);
-            price.Text = Order.GetPriceTotal();
 
+        private async void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!AIRecommand.Checked)
+            {
+                OrderRequest orderRequest = new OrderRequest((MenuModel.Discount)comboBox1.SelectedValue);
+
+                await Order.ChangeDiscountType(orderRequest);
+
+            }
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void GetOrder(object sender, FullSidePanel e)
         {
-            Order.ChangeDiscountType((MenuModel.Discount)comboBox1.SelectedValue);
+            flowLayoutPanel2.Controls.Clear();
+            flowLayoutPanel2.Controls.Add(e.order);
+            textBox1.Text = e.reason;
+            Console.WriteLine("get order" + e.reason);
+            for (int i = 0; i < MenuData.Discounts.Length; i++)
+            {
+                if (MenuData.Discounts[i].Name == e.name)
+                {
+                    comboBox1.SelectedIndex = i;
+                    break;
+                }
+            }
+
+            price.Text = Order.GetPriceTotal();
         }
     }
 }

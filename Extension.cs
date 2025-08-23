@@ -70,9 +70,9 @@ namespace OrderSystem
             return panel;
         }
 
-        public static FlowLayoutPanel GetMenu(this FlowLayoutPanel panel, MenuModel model, EventHandler NumberChanged, EventHandler CheckChanged)
+        public static FlowLayoutPanel GetMenu(this FlowLayoutPanel panel, MenuModel.Menu[] menus, EventHandler NumberChanged, EventHandler CheckChanged)
         {
-            foreach (var item in model.Menus)
+            foreach (var item in menus)
             {
                 var title = item.Title;
                 var items = item.Items;

@@ -1,4 +1,5 @@
-﻿using OrderSystem.Strategies;
+﻿using OrderSystem.Models;
+using OrderSystem.Strategies;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -14,8 +15,10 @@ namespace OrderSystem
     {
         private static List<Item> _orderDetails = new List<Item>();
 
-        public static void AddOrder(MenuModel.Discount discount, Item item)
+        //public static void AddOrder(MenuModel.Discount discount, Item item)
+        public static async Task AddOrder(OrderRequest orderRequest)
         {
+            Item item = orderRequest.MenuItem;
             Item orderItem = _orderDetails.FirstOrDefault(order => order.name == item.name);
             if (orderItem == null)
             {
@@ -39,12 +42,14 @@ namespace OrderSystem
             //AStrategy strategy = (AStrategy)Activator.CreateInstance(symbolType);
 
             //Discount.DiscountOrder(strategy, _orderDetails);
-            ChangeDiscountType(discount);
+            orderRequest.OrderList = _orderDetails;
+            await ChangeDiscountType(orderRequest);
         }
 
-        public static void ChangeDiscountType(MenuModel.Discount discount)
+        public static async Task ChangeDiscountType(OrderRequest orderRequest)
         {
-            Discount.DiscountOrder(discount, _orderDetails);
+            orderRequest.OrderList = _orderDetails;
+            await Discount.DiscountOrder(orderRequest);
         }
 
 

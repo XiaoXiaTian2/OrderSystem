@@ -11,11 +11,14 @@ namespace OrderSystem
 {
     class ShowPanel
     {
-        public static void GeneratePanel(List<Item> orderDetails)
+        public static void GeneratePanel(List<Item> orderDetails, (string, string) discountReason)
         {
-            FlowLayoutPanel flowLayoutPanel = new FlowLayoutPanel
+            FullSidePanel fullSidePanel = new FullSidePanel
             {
-                Size = new Size(350, 600)
+                order = new FlowLayoutPanel
+                {
+                    Size = new Size(250, 600)
+                }
             };
             string[] labels = { "品名", "單價", "數量", "小計" };
             foreach (var item in labels)
@@ -23,11 +26,11 @@ namespace OrderSystem
                 Label label = new Label
                 {
                     Text = item,
-                    Size = new Size(70, 30),
+                    Size = new Size(50, 30),
                     Padding = new Padding(5, 10, 0, 0),
 
                 };
-                flowLayoutPanel.Controls.Add(label);
+                fullSidePanel.order.Controls.Add(label);
             }
 
             foreach (var item1 in orderDetails)
@@ -39,14 +42,17 @@ namespace OrderSystem
                     Label label = new Label
                     {
                         Text = property.GetValue(item1).ToString(),
-                        Size = new Size(70, 30),
+                        Size = new Size(50, 30),
                         Padding = new Padding(5, 10, 0, 0),
                     };
-                    flowLayoutPanel.Controls.Add(label);
+                    fullSidePanel.order.Controls.Add(label);
                 }
             }
 
-            ReceivePanelHandler.GetFlowPanel(flowLayoutPanel);
+            fullSidePanel.reason = discountReason.Item1;
+            fullSidePanel.name = discountReason.Item2;
+
+            ReceivePanelHandler.GetFlowPanel(fullSidePanel);
         }
     }
 }
