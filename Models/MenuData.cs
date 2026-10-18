@@ -18,7 +18,7 @@ namespace OrderSystem.Models
 
         static MenuData()
         {
-            string menuPath = ConfigurationManager.AppSettings["Menu"].ToString();
+            string menuPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ConfigurationManager.AppSettings["Menu"].ToString());
             MenuJSON = File.ReadAllText(menuPath);
             MenuModel model = JsonConvert.DeserializeObject<MenuModel>(MenuJSON);
             Menus = model.Menus;
